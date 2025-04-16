@@ -24,6 +24,53 @@ interface CostData {
   cost: number;
 }
 
+// Function to convert numbers to words
+function numberToWords(num: number | null): string {
+  if (num === null) return "";
+  const ones = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+  const tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+  const teens = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"];
+
+  if (num === 0) return "Zero";
+
+  function convertLessThanThousand(n: number): string {
+    if (n < 10) return ones[n];
+    if (n < 20) return teens[n - 10];
+    const ten = Math.floor(n / 10);
+    const one = n % 10;
+    return tens[ten] + (one > 0 ? " " + ones[one] : "");
+  }
+
+  let result = "";
+
+  if (num >= 10000000) {
+    result += convertLessThanThousand(Math.floor(num / 10000000)) + " Crore ";
+    num %= 10000000;
+  }
+
+  if (num >= 100000) {
+    result += convertLessThanThousand(Math.floor(num / 100000)) + " Lakh ";
+    num %= 100000;
+  }
+
+  if (num >= 1000) {
+    result += convertLessThanThousand(Math.floor(num / 1000)) + " Thousand ";
+    num %= 1000;
+  }
+
+  if (num >= 100) {
+    result += ones[Math.floor(num / 100)] + " Hundred ";
+    num %= 100;
+  }
+
+  if (num > 0) {
+    if (result !== "") result += "and ";
+    result += convertLessThanThousand(num);
+  }
+
+  return result.trim();
+}
+
 export default function Home() {
   const [area, setArea] = useState<number | null>(null);
   const [costPerSqFt, setCostPerSqFt] = useState<number | null>(null);
@@ -131,7 +178,7 @@ export default function Home() {
       </section>
 
       {/* Construction Cost Estimator Section */}
-      <div ref={constructionCostRef}>
+      <div ref={constructionCostRef} id="constructionCostSection">
         <Card className="w-[90%] md:w-[75%] lg:w-[60%] mx-auto">
           <CardHeader className="space-y-1 p-5">
             <CardTitle className="text-2xl">Construction Cost Estimator</CardTitle>
@@ -167,7 +214,11 @@ export default function Home() {
                 <CardDescription>Detailed cost breakdown for each component.</CardDescription>
               </div>
               <div>
-                <CardTitle className="text-xl">Total: ₹{totalCost.toFixed(2)}</CardTitle>
+               <CardTitle className="text-xl">
+                  Total: ₹{totalCost.toFixed(2)}
+                  <br />
+                  (In Words: {numberToWords(totalCost)} Rupees)
+                </CardTitle>
               </div>
             </div>
           </CardHeader>
