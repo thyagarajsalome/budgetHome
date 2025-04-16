@@ -136,8 +136,15 @@ export default function Home() {
       {totalCost !== null && (
         <Card className="w-[90%] md:w-[75%] lg:w-[60%] mx-auto mt-6">
           <CardHeader className="space-y-1 p-5">
-            <CardTitle className="text-2xl">Cost Breakdown</CardTitle>
-            <CardDescription>Detailed cost breakdown for each component.</CardDescription>
+              <div className="flex items-center justify-between">
+                  <div>
+                      <CardTitle className="text-2xl">Cost Breakdown</CardTitle>
+                      <CardDescription>Detailed cost breakdown for each component.</CardDescription>
+                  </div>
+                  <div>
+                      <CardTitle className="text-xl">Total: ₹{totalCost.toFixed(2)}</CardTitle>
+                  </div>
+              </div>
           </CardHeader>
           <CardContent className="p-5">
             <div className="overflow-x-auto">

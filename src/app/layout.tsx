@@ -1,6 +1,13 @@
+'use client';
+
 import type {Metadata} from 'next';
 import {Geist, Geist_Mono} from 'next/font/google';
 import './globals.css';
+import {useState} from "react";
+import {Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
+import {Menu} from "lucide-react";
+import {Button} from "@/components/ui/button";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -22,11 +29,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const [open, setOpen] = useState(false);
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <div className="md:hidden sticky top-0 bg-background z-50">
+          <div className="container flex items-center justify-between py-4">
+              <span className="font-bold text-xl">Toolify</span>
+              <Sheet open={open} onOpenChange={setOpen}>
+                  <SheetTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                          <Menu className="h-5 w-5"/>
+                      </Button>
+                  </SheetTrigger>
+                  <SheetContent side="left" className="w-64">
+                      <SheetHeader>
+                          <SheetTitle>Toolify</SheetTitle>
+                          <SheetDescription>
+                              Mobile Navigation
+                          </SheetDescription>
+                      </SheetHeader>
+                      <div className="grid gap-4 py-4">
+                          <Link href="/" className="hover:underline">Home</Link>
+                          <Link href="/about" className="hover:underline">About</Link>
+                          <Link href="/tools" className="hover:underline">Tools</Link>
+                      </div>
+                  </SheetContent>
+              </Sheet>
+          </div>
+      </div>
         {children}
       </body>
     </html>
   );
 }
+
