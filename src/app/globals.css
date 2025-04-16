@@ -15,13 +15,13 @@ body {
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 120 46% 91%;  /* Light green (#E8F5E9) */
+    --primary: 120 70% 60%; /* Slightly brighter green */
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 96.1%; /* Neutral gray (#FAFAFA) */
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
-    --accent: 180 100% 25%; /* Teal (#008080) */
+    --accent: 180 70% 35%; /* A bit more saturated teal */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -33,7 +33,7 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.75rem; /* Slightly larger radius */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -50,13 +50,13 @@ body {
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;
     --popover-foreground: 0 0% 98%;
-     --primary: 120 46% 91%;  /* Light green (#E8F5E9) */
+    --primary: 120 70% 60%; /* Slightly brighter green */
     --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%; /* Neutral gray (#FAFAFA) */
+    --secondary: 0 0% 14.9%; /* Neutral gray */
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
-     --accent: 180 100% 25%; /* Teal (#008080) */
+    --accent: 180 70% 35%; /* A bit more saturated teal */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
@@ -92,4 +92,18 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+}
+
+/* Add subtle shadow to cards */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Add a slight lift on button hover */
+.button {
+  transition: transform 0.2s ease-in-out;
+}
+
+.button:hover {
+  transform: translateY(-2px);
 }

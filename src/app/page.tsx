@@ -30,6 +30,7 @@ export default function Home() {
   const [totalCost, setTotalCost] = useState<number | null>(null);
   const [costBreakdown, setCostBreakdown] = useState<CostData[]>([]);
   const chartRef = useRef<HTMLCanvasElement>(null);
+  const constructionCostRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -108,43 +109,67 @@ export default function Home() {
 
   return (
     <div className="container py-10">
-      <Card className="w-[90%] md:w-[75%] lg:w-[60%] mx-auto">
-        <CardHeader className="space-y-1 p-5">
-          <CardTitle className="text-2xl">Construction Cost Estimator</CardTitle>
-          <CardDescription>Enter the details to estimate your construction budget.</CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-4 p-5">
-          <div className="grid gap-2">
-            <Label htmlFor="area">Total Built-up Area (sq.ft)</Label>
-            <Input type="number" id="area" placeholder="Area in square feet" onChange={handleAreaChange} />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="costPerSqFt">Cost per sq.ft (INR)</Label>
-            <Input type="number" id="costPerSqFt" placeholder="Cost in INR" onChange={handleCostPerSqFtChange} />
-          </div>
-          <div className="flex justify-end gap-2">
-            <Button variant="outline" onClick={handleReset}>
-              Reset
-            </Button>
-            <Button onClick={handleShare} disabled={totalCost === null}>
-              Share
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Hero Section */}
+      <section className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-4">
+          Estimate Your Construction Budget with Toolify
+        </h1>
+        <p className="text-lg text-muted-foreground">
+          Get a detailed cost breakdown for your construction project.
+        </p>
+      </section>
+
+      {/* How to Use Calculator Section */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-semibold mb-4">How to Use the Construction Cost Estimator</h2>
+        <ol className="list-decimal pl-6 text-muted-foreground">
+          <li>Enter the total built-up area in square feet.</li>
+          <li>Enter the cost per square foot in INR.</li>
+          <li>View the total estimated cost and detailed cost breakdown.</li>
+          <li>Share the estimate with others.</li>
+        </ol>
+      </section>
+
+      {/* Construction Cost Estimator Section */}
+      <div ref={constructionCostRef}>
+        <Card className="w-[90%] md:w-[75%] lg:w-[60%] mx-auto">
+          <CardHeader className="space-y-1 p-5">
+            <CardTitle className="text-2xl">Construction Cost Estimator</CardTitle>
+            <CardDescription>Enter the details to estimate your construction budget.</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4 p-5">
+            <div className="grid gap-2">
+              <Label htmlFor="area">Total Built-up Area (sq.ft)</Label>
+              <Input type="number" id="area" placeholder="Area in square feet" onChange={handleAreaChange} />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="costPerSqFt">Cost per sq.ft (INR)</Label>
+              <Input type="number" id="costPerSqFt" placeholder="Cost in INR" onChange={handleCostPerSqFtChange} />
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" onClick={handleReset}>
+                Reset
+              </Button>
+              <Button onClick={handleShare} disabled={totalCost === null}>
+                Share
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
       {totalCost !== null && (
         <Card className="w-[90%] md:w-[75%] lg:w-[60%] mx-auto mt-6">
           <CardHeader className="space-y-1 p-5">
-              <div className="flex items-center justify-between">
-                  <div>
-                      <CardTitle className="text-2xl">Cost Breakdown</CardTitle>
-                      <CardDescription>Detailed cost breakdown for each component.</CardDescription>
-                  </div>
-                  <div>
-                      <CardTitle className="text-xl">Total: ₹{totalCost.toFixed(2)}</CardTitle>
-                  </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="text-2xl">Cost Breakdown</CardTitle>
+                <CardDescription>Detailed cost breakdown for each component.</CardDescription>
               </div>
+              <div>
+                <CardTitle className="text-xl">Total: ₹{totalCost.toFixed(2)}</CardTitle>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="p-5">
             <div className="overflow-x-auto">
