@@ -214,7 +214,7 @@ export default function Home() {
                 <CardDescription>Detailed cost breakdown for each component.</CardDescription>
               </div>
               <div>
-               <CardTitle className="text-xl">
+               <CardTitle className="text-md ">
                   Total: ₹{totalCost.toFixed(2)}
                   <br />
                   (In Words: {numberToWords(totalCost)} Rupees)
@@ -257,6 +257,22 @@ export default function Home() {
           </CardContent>
         </Card>
       )}
+      {/* About Section */}
+      <section id="aboutSection" className="mt-12 w-[90%] md:w-[75%] lg:w-[60%] mx-auto">
+        <h2 className="text-2xl font-semibold mb-4">About Toolify</h2>
+        <p className="text-muted-foreground">
+          Toolify is a comprehensive construction cost estimation tool designed to help you plan your budget effectively.
+          By providing detailed cost breakdowns and easy-to-use features, Toolify empowers you to make informed decisions
+          and manage your construction project with confidence.
+        </p>
+      </section>
+      {/* Contact Us Section */}
+      <section id="contactSection" className="mt-12 w-[90%] md:w-[75%] lg:w-[60%] mx-auto">
+        <h2 className="text-2xl font-semibold mb-4">Contact Us</h2>
+        <p className="text-muted-foreground">
+          If you have any questions or need assistance, feel free to reach out to us. Email: <a href="mailto:contact@toolwebsite.in">contact@toolwebsite.in</a> place Bangalore, India.
+        </p>
+      </section>
     </div>
   );
 }

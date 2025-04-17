@@ -44,6 +44,39 @@ export default function RootLayout({
     }
   };
 
+  const scrollToAbout = () => {
+    setOpen(false);
+    if (pathname !== '/') {
+      router.push('/');
+      setTimeout(() => {
+        const element = document.getElementById('aboutSection');
+        element?.scrollIntoView({behavior: "smooth", block: "start"});
+      }, 500);
+    } else {
+      const element = document.getElementById('aboutSection');
+      element?.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+  };
+
+  const scrollToContact = () => {
+    setOpen(false);
+    if (pathname !== '/') {
+      router.push('/');
+      setTimeout(() => {
+        const element = document.getElementById('contactSection');
+        element?.scrollIntoView({behavior: "smooth", block: "start"});
+      }, 500);
+    } else {
+      const element = document.getElementById('contactSection');
+      element?.scrollIntoView({behavior: "smooth", block: "start"});
+    }
+  };
+
+
+
+
+
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -65,9 +98,14 @@ export default function RootLayout({
                       </SheetHeader>
                       <div className="grid gap-4 py-4">
                           <Link href="/" className="hover:underline">Home</Link>
-                          <Link href="/about" className="hover:underline">About</Link>
+                          <Button variant="link" onClick={scrollToAbout}>
+                              About
+                          </Button>
                           <Button variant="link" onClick={scrollToCalculator}>
                               Tools
+                          </Button>
+                          <Button variant="link" onClick={scrollToContact}>
+                              Contact
                           </Button>
                       </div>
                   </SheetContent>

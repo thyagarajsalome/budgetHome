@@ -15,7 +15,7 @@ body {
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 120 70% 60%; /* Slightly brighter green */
+    --primary: 120 70% 50%; /* Slightly brighter green */
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 96.1%; /* Neutral gray (#FAFAFA) */
     --secondary-foreground: 0 0% 9%;

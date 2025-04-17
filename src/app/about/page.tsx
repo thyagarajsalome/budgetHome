@@ -42,7 +42,7 @@ export default function AboutPage() {
               If you have any questions or need assistance, feel free to reach out to us.
             </p>
             <Button asChild>
-              <Link href="mailto:contact@example.com">contact@example.com</Link>
+              <Link href="contact@toolwebsite.in">contact@toolwebsite.in</Link>
             </Button>
           </section>
         </CardContent>
